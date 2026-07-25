@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="refresh">
+	<title>Template</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+	<!-- <link rel="stylesheet" type="text/css" href="./static/style.css"> -->
+
+	<link rel="stylesheet" type="text/css" href="{{url_for('static' , filename='style.css')}}">
+	<script src="./static/js/style.js">
+	
+	/*setTimeout(function () {
+		location.reload();
+	}, 1000); */
+
+	</script>
+
+	<!-- новий скрипт -->
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.3/socket.io.min.js"></script>
+
+	<script>
+		 var socket = io();
+
+    // Отримання часу для всіх клієнтів
+    socket.on('clock_update', function(data) {
+        document.getElementById("clock").innerHTML = data;
+    });
+	</script>
+
+	<!-- END новий скрипт -->
+</head>
+<body>
+
+	<!-- Навбар -->
+<div class="navbar">
+    <a class="active" href="/user">Home</a>
+    <a href="/login">Login</a>
+    <a href="/registration">Registration</a>
+    <a href="/about_us">About us</a>
+    <a href="blog">Blog</a>
+    <!-- Годинник -->
+    <div class = "clock" id="clock">--:--:--</div>
+</div>
+
+<div class = "container">
+	{% block content %} {% endblock %}
+</div>
+</body>
+</html>

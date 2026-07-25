@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+
+<style>
+        /* Форма */
+        form {
+            background: white;
+            width: 300px;
+            margin: 60px auto;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        form input[type="text"],
+        form input[type="password"],
+        form input[type="email"] {
+            padding: 10px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        form input[type="text"]:focus,
+        form input[type="password"]:focus,
+        form input[type="email"]:focus {
+            border-color: #04AA6D;
+            box-shadow: 0 0 5px rgba(4,170,109,0.4);
+            outline: none;
+        }
+
+        form input[type="submit"] {
+            background: #04AA6D;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        form input[type="submit"]:hover {
+            background-color: #038d5c;
+            transform: scale(1.05);
+        }
+
+        p {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        p a {
+            color: #04AA6D;
+            text-decoration: none;
+        }
+
+        p a:hover {
+            text-decoration: underline;
+        }
+</style>
+</head>
+
+<body>
+{% extends "layout.html" %} 
+{% block content %}
+
+
+<!-- Форма логіну -->
+<form name="login" method="POST" action="/login">
+    <label>Username:</label>
+    <input type="text" name="username" required placeholder="Username">
+
+    <label>Password:</label>
+    <input type="password" name="password" required placeholder="Password">
+
+    <label>Email:</label>
+    <input type="email" name="email" required placeholder="Email">
+
+    <input type="submit" value="Login">
+</form>
+
+<p>You don't have an account? <a href="./registration">Registration</a></p>
+
+{% endblock %}
+</body>
+</html>

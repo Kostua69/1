@@ -1,0 +1,62 @@
+{% extends "layout.html" %} {% block content %}
+
+<!-- Контейнер профілю -->
+<div class="profile-box">
+    <h1>Welcome</h1>
+    <p>Username: <span>{{UserName}}</span></p>
+    <p>First Name: <span>{{FirstName}}</span></p>
+    <p>Last Name: <span>{{LastName}}</span></p>
+    <p>Age: <span>{{Age}}</span></p>
+    <h2>⏱ Секундомір (тільки для мене)</h2>
+    <div id="stopwatch">0</div>
+    <button onclick="startStopwatch()">Старт</button>
+</div>
+
+<style>
+
+    /* Контейнер профілю */
+    .profile-box {
+        width: 400px;
+        margin: 60px auto;
+        background: white;
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.15);
+    }
+
+    h1 {
+        margin-top: 0;
+        color: #333;
+        text-align: center;
+    }
+
+    p {
+        font-size: 16px;
+        color: #555;
+        margin: 8px 0;
+    }
+
+    span {
+        font-weight: bold;
+        color: #04AA6D;
+    }
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js">
+</script>
+
+<script>
+    var socket = io();
+    // Отримання секундоміра (тільки для одного клієнта)
+    socket.on('stopwatch_update', function(data) {
+        document.getElementById("stopwatch").innerHTML = data + " сек";
+    });
+
+    function startStopwatch() {
+        socket.emit('start_stopwatch');
+    }
+</script>
+
+
+{% endblock %}
+
