@@ -19,6 +19,11 @@ blog_posts = []
 @socketio.on('my event')
 def handle_my_custom_event(json):
     print('recived json: ' + str(json))
+    custom_sending('test Sending')
+    
+@socketio.on('my event', namespace='/test_namespace')
+def handle_my_custom_event(json):
+    print('received json namespace:' + str(json))
 
 import time
 
